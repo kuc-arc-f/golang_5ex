@@ -7,7 +7,7 @@
   "frontend:dev:watcher": "npm run dev",
   "frontend:dev:serverUrl": "auto",
   "author": {
-    "name": "中島浩二",
-    "email": "knaka0209@gmail.com"
+    "name": "hoge",
+    "email": ""
   }
 }
