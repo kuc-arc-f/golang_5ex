@@ -10,7 +10,7 @@
 
 ***
 
-Golang Wails , WebView example
+Golang Wails , WebView DeskTop example
 
 * TODO
 * json file , save
@@ -29,6 +29,8 @@ https://wails.io/ja/
 
 ***
 ### blog
+
+https://zenn.dev/knaka0209/scraps/d45613bca674d5
 
 ***
 
