@@ -30,7 +30,7 @@ https://wails.io/ja/
 ***
 ### blog
 
-https://zenn.dev/knaka0209/scraps/d45613bca674d5
+https://zenn.dev/knaka0209/scraps/279662cac117bd
 
 ***
 
