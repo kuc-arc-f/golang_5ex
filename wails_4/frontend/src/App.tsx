@@ -15,33 +15,34 @@ export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState('');
 
+  const fetchTodos = async () => {
+    try {
+      const inData = {
+        title: title.trim()
+      }
+      const target = {
+        action: "todo_list",
+        data: JSON.stringify(inData)
+      }
+      const sendJson = JSON.stringify(target)   
+      console.log(sendJson)
+      SendMessage(sendJson).then((result) => {
+        console.log("result=", result);
+        const j1 = JSON.parse(result)
+        console.log(j1);
+        if(j1.Ret === 200){
+          const j2 = JSON.parse(j1.Data)
+          console.log(j2);
+          setTodos(j2)
+        }
+      }).catch((err) => { console.error(err);});          
+    } catch (error) {
+      console.error('Error fetching todos:', error);
+    }
+  };
+
   // TODOの取得
   useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const inData = {
-          title: title.trim()
-        }
-        const target = {
-          action: "todo_list",
-          data: JSON.stringify(inData)
-        }
-        const sendJson = JSON.stringify(target)   
-        console.log(sendJson)
-        SendMessage(sendJson).then((result) => {
-          console.log("result=", result);
-          const j1 = JSON.parse(result)
-          console.log(j1);
-          if(j1.Ret === 200){
-            const j2 = JSON.parse(j1.Data)
-            console.log(j2);
-            setTodos(j2)
-          }
-        }).catch((err) => { console.error(err);});          
-      } catch (error) {
-        console.error('Error fetching todos:', error);
-      }
-    };
     fetchTodos();
   }, []);  
 
@@ -64,6 +65,7 @@ export default function App() {
       const j1 = JSON.parse(result)
       console.log(j1);
       if(j1.Ret === 200){
+        fetchTodos();
         alert("Succes , send data");
       }
     }).catch((err) => { console.error(err);});      
@@ -95,6 +97,7 @@ export default function App() {
         const j1 = JSON.parse(result)
         console.log(j1);
         if(j1.Ret === 200){
+          fetchTodos();
           alert("Succes , send data");
         }
       }).catch((err) => { console.error(err);});           
