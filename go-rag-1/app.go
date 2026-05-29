@@ -128,6 +128,7 @@ func send_chat(query string) string{
     //fmt.Printf("\n outStr %s\n\n", outStr)
     return outStr;
 }
+
 // JavaScript から呼ばれる
 func (a *App) SendMessage(msg string) string {
     println("JSから受信:", msg)
@@ -143,22 +144,6 @@ func (a *App) SendMessage(msg string) string {
     }
     var acttion_str = fmt.Sprintf("%s", req.Action)
     fmt.Printf("ret_str=%s\n", acttion_str)
-    if acttion_str == "todo_create" {
-        fmt.Printf("data=%s\n", req.Data)
-
-        type DataReq struct {
-                Title string `json:"title"`
-        }
-        var data_req DataReq
-
-        json2 := []byte(req.Data)
-        err = json.Unmarshal(json2, &data_req)
-        if err != nil {
-                fmt.Println("JSON Unmarshalエラー:", err)
-                return ""
-        }
-        fmt.Printf("Title=%s\n", data_req.Title)
-    }
     if acttion_str == "rag_search" {
         fmt.Printf("data=%s\n", req.Data)
         type DataReq struct {
@@ -185,7 +170,6 @@ func (a *App) SendMessage(msg string) string {
         fmt.Println("\n取得したベクトルデータ:")
         fmt.Printf("次元数: %d\n", len(embeddings))  
         // 4. ベクトル検索 (KNN Query)
-        //queryVecJSON, _ := json.Marshal(embeddings)        
         conn, err := grpc.Dial(
             "localhost:6334",
             grpc.WithInsecure(),
@@ -231,9 +215,6 @@ func (a *App) SendMessage(msg string) string {
         }else{
             outText =`user query:` + data_req.Query + "\n"
         }    
-        //var input string = ""
-        //input = "日本語で、回答して欲しい。\n" + outText
-        //fmt.Printf("input:\n%s", input)
         var out_str = send_chat(outText)        
         res := ActionRes{Data: out_str, Ret: 200}
         json3, err := json.Marshal(res)
@@ -258,8 +239,6 @@ func (a *App) SendMessage(msg string) string {
 
 // JavaScript から呼ばれる
 func (a *App) TestMessage(msg string) string {
-
-
 	println("JSから受信:", msg)
 	// JavaScriptへ返信イベント送信
 	runtime.EventsEmit(a.ctx, "go-message", "GOから返信: "+msg)
