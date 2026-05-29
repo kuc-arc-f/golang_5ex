@@ -54,5 +54,7 @@ https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF
 ***
 ### blog
 
+https://zenn.dev/knaka0209/scraps/0870f0554991c6
+
 ***
 
