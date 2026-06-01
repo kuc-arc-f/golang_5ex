@@ -53,5 +53,7 @@ https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF
 ***
 ### blog
 
+https://zenn.dev/knaka0209/scraps/cc918071de963c
+
 ***
 
