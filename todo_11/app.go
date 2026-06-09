@@ -129,7 +129,6 @@ func (a *App) SendMessage(msg string) string {
                 return ""
         }
         fmt.Printf("id=%d\n", data_req.Id)
-        //var id_str = os.Args[2]
         var id = data_req.Id;
         todoDeleteFunc.Call(uintptr(id))        
         res := ActionRes{Data: string(id), Ret: 200}
@@ -140,18 +139,6 @@ func (a *App) SendMessage(msg string) string {
         }	
         runtime.EventsEmit(a.ctx, "go-message", string(json3))
         return string(json3)        
-				/*
-        var id = data_req.Id;
-        var err = handler.CmdDelete(id)
-        res := ActionRes{Data: string(id), Ret: 200}
-        json3, err := json.Marshal(res)
-        if err != nil {
-            fmt.Println(err)
-            return ""
-        }	
-        runtime.EventsEmit(a.ctx, "go-message", string(json3))
-        return string(json3)        
-				*/
     }
 
     res := ActionRes{Data: "", Ret: 200}
@@ -167,16 +154,6 @@ func (a *App) SendMessage(msg string) string {
 
 // JavaScript から呼ばれる
 func (a *App) TestMessage(msg string) string {
-
-/*
-  var err error
-	err = handler.CmdAdd("test-data-1")
-	println("JSから受信:", msg)
-
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "エラー: %v\n", err)
-	}
-*/
 	// JavaScriptへ返信イベント送信
 	runtime.EventsEmit(a.ctx, "go-message", "GOから返信: "+msg)
 
