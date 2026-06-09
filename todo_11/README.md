@@ -16,12 +16,19 @@ Golang Wails , C++ call example
 * json file , save
 
 ***
+### C++ DLL
+
+https://github.com/kuc-arc-f/golang_5ex/tree/main/todo_11_dll
+
+***
 ### related
 
 https://wails.io/ja/
 
 ***
 ### blog
+
+https://zenn.dev/knaka0209/scraps/8ee536cee3401f
 
 ***
 
